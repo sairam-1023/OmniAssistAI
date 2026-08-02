@@ -11,10 +11,12 @@ __pycache__/
 # OS junk
 .DS_Store
 
-# Model artifacts (large files — we'll version these separately later)
+# Model artifacts — ignored by default (can be large),
+# but explicitly allow the small, versioned Analytics models
 *.joblib
 *.pt
 *.pth
+!models/analytics/*.joblib
 
 # IDE
 .vscode/

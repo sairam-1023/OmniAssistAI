@@ -20,3 +20,13 @@ __pycache__/
 
 # IDE
 .vscode/
+
+# Vision model — tracked via Git LFS, allow despite *.pt / *.pth ignore above
+!models/vision/*.pt
+
+# Raw collected real images — large, and some may be copyrighted;
+# keep only the processing scripts, not the images themselves
+data/real_images/
+data/real_images_split/
+data/images/
+data/images_split/

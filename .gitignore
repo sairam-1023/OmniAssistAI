@@ -30,3 +30,9 @@ data/real_images/
 data/real_images_split/
 data/images/
 data/images_split/
+
+# Language module — intent classifier tracked via Git LFS
+!models/language/intent_classifier/**
+
+# Training checkpoints — intermediate artifacts, not needed after training completes
+models/language/intent_checkpoints/

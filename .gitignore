@@ -36,3 +36,9 @@ data/images_split/
 
 # Training checkpoints — intermediate artifacts, not needed after training completes
 models/language/intent_checkpoints/
+
+# MLflow local tracking (SQLite backend + run artifacts)
+mlflow.db
+
+# Ad-hoc real-image test folder from Week 3 (not part of the versioned dataset)
+data/real_test_images/

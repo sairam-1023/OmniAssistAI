@@ -1,0 +1,14 @@
+{
+  "id2label": {
+    "0": "document_qa",
+    "1": "general_chat",
+    "2": "search_documents",
+    "3": "summarize"
+  },
+  "label2id": {
+    "document_qa": 0,
+    "general_chat": 1,
+    "search_documents": 2,
+    "summarize": 3
+  }
+}

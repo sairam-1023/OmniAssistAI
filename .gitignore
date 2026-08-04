@@ -42,3 +42,6 @@ mlflow.db
 
 # Ad-hoc real-image test folder from Week 3 (not part of the versioned dataset)
 data/real_test_images/
+
+# Allow the small vector index despite general model-ignore patterns above
+!models/language/vector_index/*

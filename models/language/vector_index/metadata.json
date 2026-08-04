@@ -1,0 +1,32 @@
+[
+  {
+    "document_id": "doc_001",
+    "filename": "acme_invoice_march.png",
+    "doc_type": "invoice"
+  },
+  {
+    "document_id": "doc_002",
+    "filename": "coffee_receipt.png",
+    "doc_type": "receipt"
+  },
+  {
+    "document_id": "doc_003",
+    "filename": "rx_amoxicillin.png",
+    "doc_type": "prescription"
+  },
+  {
+    "document_id": "doc_004",
+    "filename": "patient_intake_form.png",
+    "doc_type": "form"
+  },
+  {
+    "document_id": "doc_005",
+    "filename": "electric_bill_invoice.png",
+    "doc_type": "invoice"
+  },
+  {
+    "document_id": "doc_006",
+    "filename": "drivers_license.png",
+    "doc_type": "id_card"
+  }
+]

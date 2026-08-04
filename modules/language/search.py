@@ -48,12 +48,20 @@ def search(query: str, top_k: int = 3) -> list[dict]:
     """
     index, chunks, metadata, embedder = _load_index()
 
+    # FAISS doesn't error if top_k exceeds the number of indexed
+    # vectors — it silently returns duplicate/low-quality matches to
+    # fill the requested count instead. Cap top_k to what's actually
+    # available to avoid this.
+    effective_top_k = min(top_k, index.ntotal)
+    if effective_top_k < top_k:
+        logger.warning(
+            f"Requested top_k={top_k} exceeds index size ({index.ntotal} chunks); "
+            f"using top_k={effective_top_k} instead."
+        )
+
     query_vector = embedder.encode([query], convert_to_numpy=True).astype("float32")
 
-    # FAISS search returns two arrays: distances and indices of the
-    # top_k nearest vectors to our query vector.
-    distances, indices = index.search(query_vector, top_k)
-
+    distances, indices = index.search(query_vector, effective_top_k)
     results = []
     for rank, idx in enumerate(indices[0]):
         results.append({

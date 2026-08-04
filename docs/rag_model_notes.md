@@ -24,12 +24,35 @@ the entire document as one chunk instead of splitting. After the fix,
 the same query correctly retrieved the full invoice in one chunk and
 answered both facts correctly with accurate source citation.
 
-## Secondary observation (not yet fixed)
-`search()` occasionally returns the same document's chunk twice within
-one `top_k` result set (observed in the buggy run above, both slots 2
-and 3 were `electric_bill_invoice.png`). Worth investigating once real,
-larger document sets exist — may just reflect having only 6 documents
-total right now, giving few genuinely distinct chunks to fill top_k=3.
+## Bug found and fixed: top_k exceeding index size
+After adding intent-aware top_k routing (search_documents -> top_k=8),
+duplicate documents started appearing in results (e.g., drivers_license.png
+listed 3 times in one response). Root cause: the index only contains 6
+chunks total (one per short mock document, per the earlier chunking fix),
+but top_k=8 requested more neighbors than exist. FAISS's IndexFlatL2
+doesn't error in this case — it silently returns duplicate/padded matches
+to fill the requested count.
+
+Fix: search() now caps top_k at index.ntotal (the actual number of
+indexed chunks), logging a warning when the cap is applied. Verified:
+search_documents queries now return 6 unique sources with no duplicates,
+and the warning fires exactly when top_k > available chunks.
+
+This bug will naturally recur, differently, once the corpus grows in
+Week 6+ — worth re-testing this cap logic once real documents make
+top_k=8 a reasonable, satisfiable request rather than an edge case.
+
+## Intent-aware top_k routing
+answer_query() now calls the intent classifier first, then chooses
+top_k based on the classified intent, rather than a single fixed
+top_k for every query:
+  - document_qa: 3 (specific fact, usually in one chunk)
+  - summarize: 5 (broader document coverage)
+  - search_documents: 8 (wide net across documents)
+  - general_chat: retrieval skipped entirely
+
+This directly addresses the earlier concern that a fixed top_k could
+silently omit chunks needed to fully answer broader queries.
 
 ## Provider choice: Groq over OpenAI
 Started with OpenAI (gpt-4o-mini) but hit `insufficient_quota` — the

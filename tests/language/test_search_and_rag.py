@@ -20,3 +20,10 @@ def test_search_finds_relevant_document_by_meaning():
 def test_search_respects_top_k():
     results = search("document", top_k=5)
     assert len(results) == 5
+
+def test_search_caps_top_k_to_index_size():
+    # Our index currently has 6 chunks total. Requesting more than
+    # that should not error or duplicate — it should cap gracefully.
+    results = search("documents", top_k=100)
+    filenames = [r["filename"] for r in results]
+    assert len(filenames) == len(set(filenames)), "search() returned duplicate documents"

@@ -45,3 +45,6 @@ data/real_test_images/
 
 # Allow the small vector index despite general model-ignore patterns above
 !models/language/vector_index/*
+
+# Personal voice recordings and generated audio — not part of the versioned dataset
+data/audio/

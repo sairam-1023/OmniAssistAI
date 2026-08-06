@@ -1,0 +1,16 @@
+venv/
+__pycache__/
+*.pyc
+.git/
+.env
+data/real_images/
+data/real_images_split/
+data/images/
+data/images_split/
+data/audio/
+data/real_test_images/
+storage/uploads/
+storage/audio_outputs/
+mlruns/
+mlflow.db
+.pytest_cache/

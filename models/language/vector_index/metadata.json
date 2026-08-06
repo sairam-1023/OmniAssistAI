@@ -28,5 +28,15 @@
     "document_id": "doc_006",
     "filename": "drivers_license.png",
     "doc_type": "id_card"
+  },
+  {
+    "document_id": "doc_090cf9d5",
+    "filename": "filled-medical-prescription-white-background-32083637.webp",
+    "doc_type": "prescription"
+  },
+  {
+    "document_id": "doc_c4199324",
+    "filename": "id_card.jpg",
+    "doc_type": "id_card"
   }
 ]

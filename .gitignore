@@ -39,6 +39,7 @@ models/language/intent_checkpoints/
 
 # MLflow local tracking (SQLite backend + run artifacts)
 mlflow.db
+mlruns/
 
 # Ad-hoc real-image test folder from Week 3 (not part of the versioned dataset)
 data/real_test_images/
@@ -48,3 +49,9 @@ data/real_test_images/
 
 # Personal voice recordings and generated audio — not part of the versioned dataset
 data/audio/
+
+# OCR debug/test images from Week 6 (personal test data)
+data/ocr_test/
+
+# Runtime storage — uploaded files and generated audio, created by the running app
+storage/

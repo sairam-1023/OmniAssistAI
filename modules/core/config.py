@@ -24,8 +24,13 @@ class Settings(BaseSettings):
     storage_dir: Path = Path("storage")
     sqlite_path: Path = Path("storage/omniassist.db")
 
+    # --- LLM (Week 4 rag) ---
+    groq_api_key: str = ""
+
     # --- API auth (Week 7) ---
     api_key: str = "changeme-dev-key"
+
+    gemini_api_key: str = ""
 
     # --- Model paths (filled in as we build Weeks 2-6) ---
     analytics_model_path: Path = Path("models/analytics/model.joblib")
